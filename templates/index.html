@@ -1,0 +1,151 @@
+
+
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Predict Liver Disease</h1>
+	<h3>Machine Learning Model to Predict Liver Disease</h1>
+     
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type= "text" name="age" placeholder="Age" required="required" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="gender" placeholder="Gender" required="required" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="tb_total_bilirubin" placeholder="TB Total Bilirubin" required="required" />
+          </div>
+        </div>
+    	
+    	<div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="db_direct_bilirubin" placeholder="DB Direct Bilirubin" required="required" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="alkphos_alkaline_phosphotase" placeholder="Alkphos Alkaline Phosphotase" required="required" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="sgpt_alamine_aminotransferase" placeholder="Sgpt Alamine Aminotransferase" required="required" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="sgot_aspartate_aminotransferase" placeholder="Sgot Aspartate Aminotransferase" required="Sgot Aspartate Aminotransferase" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text"  name="tp_total_protiens" placeholder="TP Total Protiens" required="required" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="ialb_albumin" placeholder="IALB Albumin" required="required" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="albumin_globulin_ratio" placeholder="A/G Ratio " required="required" />
+          </div>
+        </div>
+        
+		<div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="button btn btn-default">Predict</button>
+          </div>
+       </div>    
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+   
+
+   <h1>MELD Score (Model For End-Stage Liver Disease)</h1>
+   <h3>MELD Score Predictor</h1>
+   <form action="{{ url_for('meldpredict')}}"method="post">
+        
+        <div id="wrapper">
+         <label for="yes_no_radio">Are you currently on Dialysis?</label>
+          <label>
+            <input type="radio" name="choice-radio" value="yes" >
+            Yes
+          </label>
+          <label>
+             <input type="radio" name="choice-radio" value="no">
+             No
+          </label>
+        </div> 
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="creatinine" placeholder="Creatinine" required="required" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="bilirubin" placeholder="Total Bilirubin" required="required" />
+          </div>
+        </div>
+    	
+    	<div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="inr" placeholder="INR" required="required" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input  class="form-control" type="text" name="sodium" placeholder="Serum Sodium" required="required" />
+          </div>
+        </div>
+        
+		<div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="button btn btn-default">MELDScore</button>
+          </div>
+       </div>    
+        
+    </form>
+    
+    <br>
+    <br>
+     {{ meld_score }}
+   
+
+ </div>
+
+
+</body>
+</html>
